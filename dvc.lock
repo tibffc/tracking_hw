@@ -1,0 +1,74 @@
+schema: '2.0'
+stages:
+  train_base:
+    cmd: python train_base_stage.py
+    deps:
+    - path: ai-vs-human-generated-dataset-hw/Test_1/test.csv
+      hash: md5
+      md5: df35590d6c17e7a7daf7b1791c9a1fda
+      size: 263907
+    - path: ai-vs-human-generated-dataset-hw/Test_1/test_data
+      hash: md5
+      md5: 7180034643f3ba6cbf4b107b0c6462b9.dir
+      size: 229687400
+      nfiles: 3997
+    - path: ai-vs-human-generated-dataset-hw/Train_1/train.csv
+      hash: md5
+      md5: 9c9092344c19efa222161bd32f319fd0
+      size: 661510
+    - path: ai-vs-human-generated-dataset-hw/Train_1/train_data
+      hash: md5
+      md5: 784e9c5553b1be916aacc76e45fecc8f.dir
+      size: 576524940
+      nfiles: 9993
+    - path: train_base_stage.py
+      hash: md5
+      md5: d6b8aa714d1b291621762c6061acf02b
+      size: 7127
+    outs:
+    - path: models/metrics_v1.0.json
+      hash: md5
+      md5: fe46bca18d846915787fd4d081bcf4db
+      size: 3006
+    - path: models/resnet18_ai_detector_v1.0.pth
+      hash: md5
+      md5: e691b424084bbe381610bf83a623b1b6
+      size: 44791450
+  finetune:
+    cmd: python finetune_stage.py
+    deps:
+    - path: ai-vs-human-generated-dataset-hw/Test_2/test.csv
+      hash: md5
+      md5: ec5a8a6020375f7f9b7b40fa925147e0
+      size: 131541
+    - path: ai-vs-human-generated-dataset-hw/Test_2/test_data
+      hash: md5
+      md5: 3fdd80f7ccb7170c29fe26d3b29db296.dir
+      size: 114259501
+      nfiles: 2000
+    - path: ai-vs-human-generated-dataset-hw/Train_2/train.csv
+      hash: md5
+      md5: 0f7ec0c515fce25ac6149d3400150851
+      size: 264024
+    - path: ai-vs-human-generated-dataset-hw/Train_2/train_data
+      hash: md5
+      md5: 75785993ea237855df0872313f006fea.dir
+      size: 229080094
+      nfiles: 3997
+    - path: finetune_stage.py
+      hash: md5
+      md5: 66c74b4a9897e1bf70418951717559cf
+      size: 7208
+    - path: models/resnet18_ai_detector_v1.0.pth
+      hash: md5
+      md5: e691b424084bbe381610bf83a623b1b6
+      size: 44791450
+    outs:
+    - path: models/metrics_v2.0.json
+      hash: md5
+      md5: 820de680b4e2e2f697f8f48c0af7f63c
+      size: 1606
+    - path: models/resnet18_ai_detector_v2.0.pth
+      hash: md5
+      md5: 9e14af411d1a70b44a1eea81d4257ae6
+      size: 44791450

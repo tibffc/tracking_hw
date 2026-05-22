@@ -1,0 +1,29 @@
+stages:
+  train_base:
+    cmd: python train_base_stage.py
+    deps:
+      - train_base_stage.py
+      - ai-vs-human-generated-dataset-hw/Train_1/train.csv
+      - ai-vs-human-generated-dataset-hw/Train_1/train_data
+      - ai-vs-human-generated-dataset-hw/Test_1/test.csv
+      - ai-vs-human-generated-dataset-hw/Test_1/test_data
+    outs:
+      - models/resnet18_ai_detector_v1.0.pth
+    metrics:
+      - models/metrics_v1.0.json:
+          cache: false
+
+  finetune:
+    cmd: python finetune_stage.py
+    deps:
+      - finetune_stage.py
+      - models/resnet18_ai_detector_v1.0.pth
+      - ai-vs-human-generated-dataset-hw/Train_2/train.csv
+      - ai-vs-human-generated-dataset-hw/Train_2/train_data
+      - ai-vs-human-generated-dataset-hw/Test_2/test.csv
+      - ai-vs-human-generated-dataset-hw/Test_2/test_data
+    outs:
+      - models/resnet18_ai_detector_v2.0.pth
+    metrics:
+      - models/metrics_v2.0.json:
+          cache: false
